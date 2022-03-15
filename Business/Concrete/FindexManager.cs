@@ -23,9 +23,12 @@ namespace Business.Concrete
             return new SuccessResult(Messages.FindexAdded);
         }
 
-        public IResult Delete(Findex findex)
+       
+
+        public IResult Delete(int id)
         {
-            _findexDal.Delete(findex);
+            var result = _findexDal.Get(f => f.Id == id);
+            _findexDal.Delete(result);
             return new SuccessResult(Messages.FindexDeleted);
         }
 

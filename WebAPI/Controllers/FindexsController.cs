@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Findex findex)
+        public IActionResult Delete(int id)
         {
-            var result = _findexService.Delete(findex);
+            var result = _findexService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

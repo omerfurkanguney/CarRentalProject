@@ -23,9 +23,12 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CreditCardAdded);
         }
 
-        public IResult Delete(CreditCard creditCard)
+      
+
+        public IResult Delete(int id)
         {
-            _creditCard.Delete(creditCard);
+            var result = _creditCard.Get(cc => cc.Id == id);
+            _creditCard.Delete(result);
             return new SuccessResult(Messages.CreditCardDeleted);
         }
 

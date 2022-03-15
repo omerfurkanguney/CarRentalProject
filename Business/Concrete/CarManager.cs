@@ -26,9 +26,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
-        public IResult Delete(Car car)
+        public IResult Delete(int id)
         {
-            _carDal.Delete(car);
+            var result = _carDal.Get(b => b.BrandId == id);
+            _carDal.Delete(result);
             return new SuccessResult(Messages.CarDeleted);
         }
 

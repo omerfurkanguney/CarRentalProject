@@ -24,10 +24,12 @@ namespace Business.Concrete
             return new SuccessResult(Messages.BrandAdded);
         }
 
-        public IResult Delete(Brand brand)
+        public IResult Delete(int id)
         {
-            _brandDal.Delete(brand);
-             return new SuccessResult(Messages.BrandDeleted);
+            var result = _brandDal.Get(b => b.BrandId == id);
+            _brandDal.Delete(result);
+            return new SuccessResult(Messages.BrandDeleted);
+           
         }
 
         public IDataResult<List<Brand>> GetAll()
@@ -35,9 +37,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll().ToList());
         }
 
-        public IDataResult<Brand> GetById(int Id)
+        public IDataResult<Brand> GetById(int id)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == Id));
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));
         }
 
         public IResult Update(Brand brand)

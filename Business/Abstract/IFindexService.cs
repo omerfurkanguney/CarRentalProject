@@ -6,8 +6,13 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IFindexService : IEntityServiceBase<Findex>
+    public interface IFindexService 
     {
         IDataResult<List<Findex>> GetAllByUserId(int UserId);
+        IResult Add(Findex findex);
+        IResult Update(Findex findex);
+        IResult Delete(int id);
+        IDataResult<List<Findex>> GetAll();
+        IDataResult<Findex> GetById(int id);
     }
 }

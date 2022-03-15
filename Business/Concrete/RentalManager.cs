@@ -33,17 +33,24 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalAdded);
         }
 
-        public IResult Delete(Rental rental)
+        public IResult Delete(int id)
         {
-            IResult results = BusinessRules.Run(CheckIfDelete(rental.Id));
-            if (results != null)
-            {
-                return results;
-            }
-
-            _rentalDal.Delete(rental);
+            var result = _rentalDal.Get(r => r.Id == id);
+            _rentalDal.Delete(result);
             return new SuccessResult(Messages.RentalDeleted);
         }
+
+        //public IResult Delete(Rental rental)
+        //{
+        //    IResult results = BusinessRules.Run(CheckIfDelete(rental.Id));
+        //    if (results != null)
+        //    {
+        //        return results;
+        //    }
+
+        //    _rentalDal.Delete(rental);
+        //    return new SuccessResult(Messages.RentalDeleted);
+        //}
 
         //bu metot çagrıldıgında arac teslim edildi.
         //teslim edilme tarihi verildi.

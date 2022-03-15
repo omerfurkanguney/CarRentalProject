@@ -22,9 +22,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserAdded);
         }
 
-        public IResult Delete(User user)
+   
+
+        public IResult Delete(int id)
         {
-            _userDal.Delete(user);
+
+            var result = _userDal.Get(cc => cc.Id == id);
+            _userDal.Delete(result);
             return new SuccessResult(Messages.UserDeleted);
         }
 

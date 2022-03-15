@@ -31,9 +31,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(CreditCard CreditCard)
+        public IActionResult Delete(int id)
         {
-            var result = _creditCardService.Delete(CreditCard);
+            var result = _creditCardService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

@@ -52,10 +52,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(Brand brand)
+        [HttpDelete("delete")]
+        public IActionResult Delete(int id)
         {
-            var result = _brandService.Delete(brand);
+            var result = _brandService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")] 
         public IActionResult Update(Brand brand)
         {
             var result = _brandService.Update(brand);

@@ -55,9 +55,9 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("delete")]
-        public IActionResult Delete(User user)
+        public IActionResult Delete(int id)
         {
-            var result = _userService.Delete(user);
+            var result = _userService.Delete(id);
             if (result.Success)
             {
                 return Ok(result.Message);

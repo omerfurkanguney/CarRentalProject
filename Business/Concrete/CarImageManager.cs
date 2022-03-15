@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constant;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -31,16 +32,16 @@ namespace Business.Concrete
         }
 
        
-        public IResult Delete(CarImage carImage)
-        {
-            IResult result = BusinessRules.Run(CheckIfDeleteImage(carImage));
-            if (result != null)
-            {
-                return result;
-            }
-            _carImageDal.Delete(carImage);
-            return new SuccessResult();
-        }
+        //public IResult Delete(CarImage carImage)
+        //{
+        //    IResult result = BusinessRules.Run(CheckIfDeleteImage(carImage));
+        //    if (result != null)
+        //    {
+        //        return result;
+        //    }
+        //    _carImageDal.Delete(carImage);
+        //    return new SuccessResult();
+        //}
 
         public IDataResult<List<CarImage>> GetAll()
         {
@@ -144,5 +145,11 @@ namespace Business.Concrete
 
         }
 
+        public IResult Delete(int id)
+        {
+            var result = _carImageDal.Get(f => f.Id == id);
+            _carImageDal.Delete(result);
+            return new SuccessResult(Messages.CarDeleted);
+        }
     }
 }
